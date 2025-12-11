@@ -22,7 +22,6 @@ public class TestFixtures {
     private static final LocalDateTime DATE_TIME = LocalDateTime.of(2025, 10, 29, 12, 0, 0);
     public static final int MIN_APPROVAL_COUNT = 3;
 
-    // TODO: Uncomment review-related code once the domain model and service are implemented.
 
     private static final List<User> USER_LIST = List.of(
             User.builder()

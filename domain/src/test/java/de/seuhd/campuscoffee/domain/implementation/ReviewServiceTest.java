@@ -31,7 +31,6 @@ import static org.mockito.Mockito.when;
  */
 @ExtendWith(MockitoExtension.class)
 public class ReviewServiceTest {
-    // TODO: Uncomment after implementing review domain models and service.
 
     private final ApprovalConfiguration approvalConfiguration = getApprovalConfiguration();
 

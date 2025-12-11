@@ -20,7 +20,6 @@ public record ReviewDto (
         @NonNull @NotNull Long authorId,
         @NonNull @NotNull String review,
         @Nullable Boolean approved
-        // TODO: Implement ReviewDto
 ) implements Dto<Long> {
     @Override
     public @Nullable Long getId() {

@@ -18,7 +18,6 @@ public record Review(
         @NonNull Pos pos,
         @NonNull User author,
         @NonNull String review,
-        //TODO: Implement review domain model.
         @NonNull Integer approvalCount, // is updated by the domain module
         @NonNull Boolean approved // is determined by the domain module
 ) implements DomainModel<Long> {

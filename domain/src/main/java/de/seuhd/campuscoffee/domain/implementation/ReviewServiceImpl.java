@@ -29,7 +29,6 @@ public class ReviewServiceImpl extends CrudServiceImpl<Review, Long> implements 
     private final ReviewDataService reviewDataService;
     private final UserDataService userDataService;
     private final PosDataService posDataService;
-    // TODO: Try to find out the purpose of this class and how it is connected to the application.yaml configuration file.
     private final ApprovalConfiguration approvalConfiguration;
 
     public ReviewServiceImpl(@NonNull ReviewDataService reviewDataService,
@@ -51,7 +50,6 @@ public class ReviewServiceImpl extends CrudServiceImpl<Review, Long> implements 
     @Override
     @Transactional
     public @NonNull Review upsert(@NonNull Review review) {
-        // TODO: Implement the missing business logic here
 
         //Check if Pos exists
         Long posId = review.pos().getId();
@@ -110,30 +108,25 @@ public class ReviewServiceImpl extends CrudServiceImpl<Review, Long> implements 
                 review.getId(), userId);
 
         // validate that the user exists
-        // TODO: Implement the required business logic here
         Objects.requireNonNull(userId);
         userDataService.getById(userId);
 
         // validate that the review exists
-        // TODO: Implement the required business logic here
         Objects.requireNonNull(review.getId());
         Review currentReview = reviewDataService.getById(review.getId());
 
         // a user cannot approve their own review
-        // TODO: Implement the required business logic here
         assert currentReview.author().getId() != null;
         if (currentReview.author().getId().equals(userId)){
             throw new ValidationException("A user cannot approve their own review.");
         }
 
         // increment approval count
-        // TODO: Implement the required business logic here
         Review updatedReview = currentReview.toBuilder()
                 .approvalCount(review.approvalCount() + 1)
                 .build();
 
         // update approval status to determine if the review now reaches the approval quorum
-        // TODO: Implement the required business logic here
         updatedReview = updateApprovalStatus(updatedReview);
 
         return reviewDataService.upsert(updatedReview);
