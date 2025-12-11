@@ -165,41 +165,41 @@ curl http://localhost:8080/api/reviews
 
 Review by ID:
 ```shell
-curl http://localhost:8080/api/reviews/1 # add valid user id here
+curl 'http://localhost:8080/api/reviews/1' 
 ```
 
 Get approved reviews for a POS:
 ```shell
-curl http://localhost:8080/api/reviews/filter?pos_id=1&approved=true # add valid POS id here
+curl 'http://localhost:8080/api/reviews/filter?pos_id=1&approved=true' 
 ```
 
 ##### Create reviews
 
 ```shell
-curl --header "Content-Type: application/json" --request POST --data '{"posId":2,"authorId":1,"review":"Great place!"}' http://localhost:8080/api/reviews # use existing IDs for posId and authorId
+curl --header "Content-Type: application/json" --request POST --data '{"posId":2,"authorId":1,"review":"Great place!"}' http://localhost:8080/api/reviews 
 ```
 
 Users cannot create more than one review per POS:
 ```shell
-curl --header "Content-Type: application/json" --request POST --data '{"posId":2,"authorId":1,"review":"Great place!"}' http://localhost:8080/api/reviews # use existing IDs for posId and authorId
+curl --header "Content-Type: application/json" --request POST --data '{"posId":2,"authorId":1,"review":"Great place!"}' http://localhost:8080/api/reviews 
 ```
 
 ##### Approve reviews
 
 Users cannot approve their own reviews:
 ```shell
-curl --request PUT http://localhost:8080/api/reviews/4/approve?user_id=1 # use existing review ID and user ID (of the author)
+curl --request PUT 'http://localhost:8080/api/reviews/4/approve?user_id=1' 
 ```
 
 However, users can approve the same review multiple times (which is a limitation of the current implementation):
 ```shell
-curl --request PUT http://localhost:8080/api/reviews/4/approve?user_id=2 # use existing review ID and user ID (different from author)
+curl --request PUT 'http://localhost:8080/api/reviews/4/approve?user_id=2'
 ```
 ```shell
-curl --request PUT http://localhost:8080/api/reviews/4/approve?user_id=2 # use existing review ID and user ID (different from author)
+curl --request PUT http://localhost:8080/api/reviews/4/approve?user_id=2 
 ```
 ```shell
-curl --request PUT http://localhost:8080/api/reviews/4/approve?user_id=2 # use existing review ID and user ID (different from author)
+curl --request PUT http://localhost:8080/api/reviews/4/approve?user_id=2 
 ```
 
 ## Docker
